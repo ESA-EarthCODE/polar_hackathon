@@ -16,4 +16,9 @@ If you are using the provided cloud platform environment these notebooks and env
 
 To request an account (only available during the workshop!) click on the following and use your github account to sign in: https://workspace.polar-hackathon.hub-otc-sc.eox.at
 
-NOTE: UPDATE THIS WITH NBGITPULL TO THIS REPO!
+An instructor will need to approve access for you to the online workspaces.
+
+You can then directly clone and open this workshop by just following the link below:
+
+https://workspace.polar-hackathon.hub-otc-sc.eox.at/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2FESA-EarthCODE%2Fpolar_hackathon&urlpath=lab%2Ftree%2Fpolar_hackathon%2F0_Introduction%2Fintro.ipynb&branch=main
+
