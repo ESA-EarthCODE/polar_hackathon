@@ -1,28 +1,30 @@
 # GeoParquet
 
-GeoParquet is a cloud-native format for geospatial vector data. It is useful when a dataset is made of features such as points, lines, or polygons rather than a dense raster grid or data cube.
+GeoParquet is a cloud-friendly way to store geospatial vector data, such as points, lines, and polygons, in [Apache Parquet](https://parquet.apache.org/). It is useful when the data is fundamentally a table of features with geometry and attributes, rather than a raster image or a gridded data cube.
 
-The Antarctic grounding-line product is a good example. The data describes grounding-line positions as vector geometries with attributes such as acquisition date and satellite sensor. That is a natural fit for GeoParquet: the geometry is kept with the tabular metadata, and users can read only the columns they need from object storage.
+Parquet is a columnar storage format with broad support across data tools. GeoParquet builds on it by defining how geometry columns and geospatial metadata, such as the coordinate reference system (CRS), are stored. Because GeoParquet is still standard Parquet, general-purpose tools can read the table, while geospatial tools such as GeoPandas, GDAL, and QGIS can also interpret the geometry.
 
-GeoParquet builds on [Apache Parquet](https://parquet.apache.org/), a widely used columnar storage format for tabular data. The "Geo" part defines how geometry columns and geospatial metadata, such as the coordinate reference system (CRS), are stored. Because GeoParquet is still standard Parquet, non-geospatial tools can read the table, while geospatial tools such as GeoPandas can also understand the geometry.
+This page is adapted from the [Cloud-Native Geospatial Guide](https://guide.cloudnativegeo.org/geoparquet/), with examples from polar data access workflows.
 
-This guide adapts material from the [Cloud-Native Geospatial Guide](https://guide.cloudnativegeo.org/geoparquet/).
+## Where GeoParquet Fits
 
-## Why GeoParquet?
+Use GeoParquet for vector or tabular geospatial datasets:
 
-Cloud-hosted datasets should be usable without downloading full archives first. GeoParquet helps because it supports:
+- grounding lines;
+- calving fronts;
+- glacier outlines;
+- drainage basins;
+- point observations;
+- ship, buoy, or field campaign tracks;
+- feature tables with geometry and attributes.
 
-- **Column access:** read only the attributes needed for an analysis, such as `SENSOR`, `DATE1`, and `geometry`.
-- **Efficient filtering:** skip row groups whose statistics show they cannot match a query.
-- **Compact storage:** store large vector tables more efficiently than CSV or many shapefile sidecars.
-- **Interoperability:** work with Python, GeoPandas, PyArrow, DuckDB, GDAL, QGIS, and other tools.
-- **Cloud access:** read directly from object storage using HTTP or S3-compatible endpoints.
+For scene-like raster imagery, use COG. For dense, aligned multidimensional arrays, use Zarr. GeoParquet fills the vector-data role in the same cloud-native ecosystem.
 
-GeoParquet is especially appropriate for vector products such as grounding lines, calving fronts, polygons, transects, point observations, and catalog-like feature tables.
+GeoParquet is especially useful for object storage because readers can fetch selected columns and row groups rather than treating the file as one large download. That makes it practical to work with large feature tables from Python, GIS tools, or query engines.
 
 ## Example: Antarctic Grounding Lines
 
-This example reads an Antarctic grounding-line GeoParquet file directly from object storage:
+Antarctic grounding lines are a natural vector dataset: each feature has a line geometry plus attributes such as date and sensor. The example below reads a GeoParquet file directly from object storage using GeoPandas.
 
 ```python
 import geopandas as gpd
@@ -46,13 +48,13 @@ gdf = gpd.read_parquet(
 gdf.head()
 ```
 
-Once loaded, the dataset behaves like a normal GeoDataFrame:
+Once loaded, the data behaves like a normal GeoDataFrame:
 
 ```python
 gdf["SENSOR"].unique()
 ```
 
-You can also reproject and plot the grounding lines in Antarctic Polar Stereographic coordinates:
+You can reproject and plot the geometries in Antarctic Polar Stereographic coordinates:
 
 ```python
 import matplotlib.pyplot as plt
@@ -62,32 +64,33 @@ gdf.to_crs("EPSG:3031").plot(column="SENSOR", legend=True, ax=ax)
 ax.set_title("Grounding-line observations by sensor")
 ```
 
-This is the basic cloud-native pattern: open the remote vector asset directly, then filter, plot, or join it with other datasets.
+The important pattern is simple: open the remote vector asset directly, inspect its attributes, and then filter, plot, or join it with other datasets.
+
+## Reading and Writing
+
+Reading and writing GeoParquet has been [supported in GDAL since version 3.5](https://gdal.org/drivers/vector/parquet.html), so it can be used in software such as GeoPandas and QGIS.
+
+> **Warning**
+>
+> In GeoPandas, use [`read_parquet`](https://geopandas.org/en/stable/docs/reference/api/geopandas.read_parquet.html) and [`to_parquet`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.to_parquet.html) to read and write GeoParquet. These are different from `read_file` and `to_file`, which are commonly used for formats such as Shapefile or GeoPackage.
+
+Because GeoParquet stores geometries in standard [Well-Known Binary](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry#Well-known_binary) (WKB), it supports the geometry types defined in the OGC Simple Features specification: `Point`, `LineString`, `Polygon`, `MultiPoint`, `MultiLineString`, `MultiPolygon`, and `GeometryCollection`.
+
+Where possible, store a single geometry type per file. For example, a grounding-line dataset is easier to consume if all features are line geometries.
 
 ## File Layout
 
-Parquet files are laid out differently from row-oriented formats like CSV, so it helps to think of them as column-oriented tables split into chunks.
+Parquet files are laid out differently from row-oriented formats like CSV or FlatGeobuf.
 
 ![Schematic of Parquet file layout](../../static/geoparquet_layout.png)
 
-A Parquet file consists of row groups. Each row group contains column chunks, where the values for each column are stored together. This layout matters in the cloud because a reader can fetch only the byte ranges needed for selected columns and selected row groups.
+A Parquet file consists of a sequence of chunks called row groups. Each row group contains column chunks: contiguous blocks of values for each column. All row groups in the file share the same schema.
 
-The Parquet footer stores metadata describing the schema, column locations, and row-group statistics. A reader usually fetches the footer first, then requests only the relevant column chunks.
+The file footer stores metadata describing the schema, the byte range of every column chunk, and optional column statistics such as minimum and maximum values. A reader usually fetches the footer first, then makes targeted reads for the columns and row groups needed by a query.
 
-## What GeoParquet Adds
+### Column-Oriented
 
-GeoParquet defines two geospatial conventions on top of standard Parquet:
-
-- how geometries are encoded, usually as [Well-Known Binary](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry#Well-known_binary) (WKB);
-- how geospatial metadata such as the geometry column name, geometry type, bounds, and CRS are recorded.
-
-GeoParquet supports the usual OGC Simple Features geometry types: `Point`, `LineString`, `Polygon`, `MultiPoint`, `MultiLineString`, `MultiPolygon`, and `GeometryCollection`.
-
-It is best to keep a single geometry type per file where possible. For example, grounding lines should be stored as line geometries, while calving-front outlines or drainage basins may be stored as line or polygon geometries depending on the source product.
-
-## Filtering and Access Patterns
-
-GeoParquet is strongest when users access a subset of attributes or features:
+The bytes of each column are contiguous, rather than the bytes of each row. This makes it efficient to read a subset of columns. For example, a user may only need `SENSOR`, `DATE1`, and `geometry`, rather than every attribute in the table.
 
 ```python
 cols = ["SENSOR", "DATE1", "geometry"]
@@ -105,47 +108,34 @@ gdf = gpd.read_parquet(
 )
 ```
 
-If a dataset is sorted or partitioned by a useful field, readers can skip more data. For polar time-series vector products, useful fields may include observation year, satellite sensor, basin ID, or product version.
+### Row Group Filtering
 
-::: {.callout-note}
+Because Parquet is internally chunked, readers can sometimes skip row groups that cannot match a filter. This works best when the file is sorted or partitioned by a useful field, such as year, sensor, basin, or region.
 
-GeoParquet is a file format, not a database. It can support efficient column reads and row-group skipping, but it does not replace a spatial database with multiple indexes. For very complex spatial queries, use a database or a spatial indexing workflow. For portable cloud-hosted vector assets, GeoParquet is a strong default.
+> **Note**
+>
+> Parquet is a file format, not a database. It supports efficient column reads and row-group skipping, but it does not replace a spatial database with multiple indexes. For complex spatial queries, use a database or a dedicated spatial indexing workflow.
 
-:::
+### Internal Compression
 
-## Multi-File Datasets
+Parquet is compressed internally by default. Compression tends to work well because values within a column are often similar to one another. A reader can fetch and decompress individual column chunks, although it cannot read partial data from inside a compressed chunk.
 
-Small and medium vector products are often easiest to publish as a single `.parquet` file. Larger products can be split into multiple Parquet files, often partitioned by a field such as year or region.
+### Spatial Indexes
 
-For multi-file datasets, publish shared metadata files such as `_metadata` and `_common_metadata` where possible. Without a top-level metadata file, readers may need to inspect the footer of every Parquet file before reading data.
+Spatial indexes are not yet part of the GeoParquet standard. For large spatial datasets, one common pattern is to split data into multiple GeoParquet files by region or tile and describe those files with [STAC](https://stacspec.org/).
 
-This pattern is useful for products that grow over time. For example, new yearly vector observations can be written as additional files, as long as the schema remains consistent.
+### Multi-File Datasets
 
-## Describing GeoParquet with STAC
+Small and medium vector products are often easiest to publish as a single `.parquet` file. Larger products may be split into multiple files, especially if they are produced by a distributed system or partitioned by a field such as year or region.
 
-GeoParquet stores the data. STAC describes how users discover it.
+For multi-file datasets, a top-level metadata file such as `_metadata` can help readers avoid opening every individual Parquet footer before reading data. If new files are added later, keep the schema consistent and regenerate shared metadata when needed.
 
-A GeoParquet asset should be described in STAC with clear metadata about:
+Some details of GeoParquet metadata in multi-file layouts are still evolving in the specification.
 
-- the product title and scientific purpose;
-- spatial and temporal extent;
-- license and provenance;
-- geometry type and CRS;
-- key attributes such as sensor, acquisition date, or processing version;
-- a direct asset link to the `.parquet` file or partitioned dataset.
+### Immutability
 
-In the grounding-lines case, the STAC record should make it clear that the product contains Antarctic grounding-line positions derived from multiple SAR missions between 1992 and 2014, and that the cloud asset is the GeoParquet file used by the example above.
+Parquet files are immutable. To modify or append data, write a new file or add another file to a partitioned dataset.
 
-## When to Use GeoParquet
+### Type System
 
-Use GeoParquet when your product is vector or tabular geospatial data:
-
-- grounding lines;
-- calving fronts;
-- glacier outlines;
-- drainage basins;
-- point measurements;
-- ship, buoy, or campaign tracks;
-- feature tables with geometries and attributes.
-
-Use COG for scene-like raster imagery. Use Zarr for dense, aligned multidimensional data cubes. GeoParquet is the vector counterpart to those formats: compact, cloud-friendly, and easy to use from Python and GIS tools.
+Parquet supports a rich type system, including nested types such as lists and maps. This makes it possible to store structured attributes alongside geometry, although simple scalar columns are usually easiest for broad interoperability.
