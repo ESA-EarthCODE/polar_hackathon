@@ -9,7 +9,7 @@ project:
         - id: ESA
           institution: ESA
           ror: https://ror.org/03wd9za21
-  github: https://github.com/u3ks/hackathon-code
+  github: https://github.com/ESA-EarthCODE/polar_hackathon
   open_access: true
   license:
     content: CC-BY-4.0
@@ -101,6 +101,4 @@ site:
   actions:
     - title: Learn about EarthCODE
       url: https://earthcode.esa.int
-    - title: Learn about Pangeo
-      url: https://pangeo.io
   domains: []
