@@ -22,6 +22,9 @@ project:
         - file: 0_Introduction/agenda.md
         - file: 0_Introduction/instructors.md
         - file: 0_Introduction/setup.md
+        - file: 0_Introduction/Polar-TEP/polar-tep.md
+          children:
+            - file: 0_Introduction/Polar-TEP/dask-gateway.ipynb
     - file: 1_Datasets/datasets_sumary.ipynb
       children:
         - file: 1_Datasets/ai4ais/access.ipynb

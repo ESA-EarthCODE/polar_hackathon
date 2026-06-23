@@ -22,3 +22,6 @@ You can then directly clone and open this workshop by just following the link be
 
 https://workspace.polar-hackathon.hub-otc-sc.eox.at/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2FESA-EarthCODE%2Fpolar_hackathon&urlpath=lab%2Ftree%2Fpolar_hackathon%2F0_Introduction%2Fintro.ipynb&branch=main
 
+Make sure to select the correct environment size - Dask Gateway and 12gb RAM 4 CPU as shown in the screenshot below![env](../static/jhub-env.png)
+
+See [the introduction to Polar TEP](./Polar-TEP/polar-tep.md) for more details.
