@@ -1,0 +1,103 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  title: Polar Hackathon
+  description: Guided notebooks for discovering Antarctic datasets, converting them into cloud-native formats, combining them into analysis-ready collections, and using them in scientific workflows.
+  authors:
+    - name: European Space Agency
+      affiliations:
+        - id: ESA
+          institution: ESA
+          ror: https://ror.org/03wd9za21
+  github: https://github.com/u3ks/hackathon-code
+  open_access: true
+  license:
+    content: CC-BY-4.0
+    code: MIT
+  copyright: "2026"
+  toc:
+    - file: 0_Introduction/intro.ipynb
+    - title: Introduction
+      children:
+        - file: 0_Introduction/agenda.md
+        - file: 0_Introduction/instructors.md
+        - file: 0_Introduction/setup.md
+    - file: 1_Datasets/datasets_sumary.ipynb
+      children:
+        - file: 1_Datasets/ai4ais/access.ipynb
+          title: AI4AIS Larsen C cube
+        - file: 1_Datasets/albatros/access.ipynb
+          title: ALBATROS tidal elevation
+        - file: 1_Datasets/basal_melt/access.ipynb
+          title: Ice shelf basal melt
+        - file: 1_Datasets/bedrock_topography/access.ipynb
+          title: BedMachine Antarctica
+        - file: 1_Datasets/calving_fronts/access.ipynb
+          title: Calving fronts
+        - file: 1_Datasets/csao/access.ipynb
+          title: CS+AO sea ice thickness
+        - file: 1_Datasets/groundlines/access.ipynb
+          title: Grounding lines
+        - file: 1_Datasets/ice_temp/access.ipynb
+          title: Ice temperature profiles
+        - file: 1_Datasets/ice_velocity/access.ipynb
+          title: Ice velocity
+        - file: 1_Datasets/sec/access.ipynb
+          title: Surface elevation change
+        - file: 1_Datasets/sofresh/access.ipynb
+          title: SOFRESH sea surface salinity
+        - file: 1_Datasets/subglacial_lakes/access.ipynb
+          title: Subglacial lakes
+        - file: 1_Datasets/supraglacial_lakes/access.ipynb
+          title: Supraglacial lakes
+    - file: 2_Datacube/0_intro.ipynb
+      children:
+        - file: 2_Datacube/1_remote_cube_access.ipynb
+          title: Remote cube access
+        - file: 2_Datacube/2_build_single_cube_demo.ipynb
+          title: Build a single cube
+        - file: 2_Datacube/3_large_area_processing.ipynb
+          title: Large-area processing
+    - file: 3_File_formats_and_metadata/0_intro.ipynb
+      children:
+        - title: COG
+          children:
+            - file: 3_File_formats_and_metadata/cog/1_cog_from_nc.ipynb
+              title: Create COGs from NetCDF
+            - file: 3_File_formats_and_metadata/cog/1_cog_from_tiff.ipynb
+              title: Create a COG from GeoTIFF
+            - file: 3_File_formats_and_metadata/cog/2_cog_metadata.ipynb
+              title: COG STAC metadata
+        - title: Parquet
+          children:
+            - file: 3_File_formats_and_metadata/parquet/1_parquet_from_nc.ipynb
+              title: NetCDF point data to GeoParquet
+            - file: 3_File_formats_and_metadata/parquet/1_parquet_from_shp.ipynb
+              title: Shapefile to GeoParquet
+            - file: 3_File_formats_and_metadata/parquet/2_parquet_metadata.ipynb
+              title: GeoParquet STAC metadata
+        - title: Zarr
+          children:
+            - file: 3_File_formats_and_metadata/zarr/1_zarr_from_cog.ipynb
+              title: COGs to Zarr
+            - file: 3_File_formats_and_metadata/zarr/1_zarr_from_nc_1.ipynb
+              title: NetCDF to Zarr
+            - file: 3_File_formats_and_metadata/zarr/1_zarr_from_nc_2.ipynb
+              title: SOFRESH NetCDF to Zarr
+            - file: 3_File_formats_and_metadata/zarr/1_zarr_from_parquet(vector).ipynb
+              title: Rasterise GeoParquet to Zarr
+            - file: 3_File_formats_and_metadata/zarr/2_zarr_metadata.ipynb
+              title: Zarr STAC metadata
+    - file: 4_Visualisation/intro.ipynb
+  subject: earth and related environmental sciences
+
+site:
+  template: book-theme
+  options:
+    logo: static/EarthCODE_kv_transparent.png
+  actions:
+    - title: Learn about EarthCODE
+      url: https://earthcode.esa.int
+    - title: Learn about Pangeo
+      url: https://pangeo.io
+  domains: []
