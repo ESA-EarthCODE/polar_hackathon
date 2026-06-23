@@ -63,7 +63,7 @@ project:
           title: Large-area processing
     - file: 3_File_formats_and_metadata/0_intro.ipynb
       children:
-        - title: COG
+        - file: 3_File_formats_and_metadata/cog/cog.md
           children:
             - file: 3_File_formats_and_metadata/cog/1_cog_from_nc.ipynb
               title: Create COGs from NetCDF
@@ -71,7 +71,7 @@ project:
               title: Create a COG from GeoTIFF
             - file: 3_File_formats_and_metadata/cog/2_cog_metadata.ipynb
               title: COG STAC metadata
-        - title: Parquet
+        - file: 3_File_formats_and_metadata/parquet/parquet.md
           children:
             - file: 3_File_formats_and_metadata/parquet/1_parquet_from_nc.ipynb
               title: NetCDF point data to GeoParquet
@@ -79,7 +79,7 @@ project:
               title: Shapefile to GeoParquet
             - file: 3_File_formats_and_metadata/parquet/2_parquet_metadata.ipynb
               title: GeoParquet STAC metadata
-        - title: Zarr
+        - file: 3_File_formats_and_metadata/zarr/zarr.md
           children:
             - file: 3_File_formats_and_metadata/zarr/1_zarr_from_cog.ipynb
               title: COGs to Zarr
