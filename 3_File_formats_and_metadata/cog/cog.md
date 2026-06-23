@@ -21,7 +21,7 @@ The cloud optimization comes from two key features
 
 ![COG overviews pyramid](../../static/cog-overviews-pyramid.png)
 
-The file's entire structure is described in a metadata header—containing Image File Directories (IFDs)—located at the very beginning of the file. This index-first layout enables an efficient workflow for clients like python libraries, web browsers or GIS applications:
+The file's entire structure is described in a metadata header containing Image File Directories (IFDs), located at the very beginning of the file. This index-first layout enables an efficient workflow for clients like python libraries, web browsers or GIS applications:
 
 1. Fetch the Index, the client sends a single, small HTTP request to fetch only the header. It parses this data to read the IFDs, which act as a complete "table of contents" for the file, mapping out the byte locations of all tiles for all overviews and the full-resolution image.
 2. Request Only the Necessary Data, based on the user's current zoom level and location, the client calculates which specific tiles it needs from the appropriate layer (e.g., a low-resolution overview if zoomed out). Using the locations from the IFDs, it sends targeted HTTP GET range requests to download only those necessary tiles, completely ignoring the rest of the file.
@@ -61,16 +61,15 @@ stac_load(
 
 This two-stage data layout and process allows you to efficiently find the exact scenes you need from datasets and then efficiently download only the data you need from those scenes.
 
-:::details Best Practice: One Variable Per COG
+## Best Practice: One Variable Per COG
 
 When creating your data, you have a choice: should a single COG file contain multiple variables (as bands), or should each variable be a separate COG?
 
 While a single COG can contain multiple bands (e.g., red, green, and blue for a true-color image), the **recommended best practice for EarthCODE is to store each distinct variable as a separate COG file.**
 
 This "one variable per file" approach offers greater flexibility for users. It allows them to find and access only the specific bands required for their analysis, reducing data transfer and complexity. In a STAC Item, these separate files are clearly listed as distinct assets (e.g., with keys like `"red"`, `"nir"`, or `"wind_speed"`), making the data more explicit and easier for automated tools to consume.
-:::
 
-:::details Best Practice: Group Related Assets into a Single STAC Item
+## Best Practice: Group Related Assets into a Single STAC Item
 
 A single STAC Item should represent a single, discrete observation in space and time, such as a satellite scene or a specific model run. The guiding principle is: **all data files (COGs) that are captured or produced together as part of that single observation should be grouped as assets within one STAC Item.**
 
@@ -82,9 +81,7 @@ This approach has several key benefits:
 * **Improves Discoverability:** When users search a catalog, their results are not cluttered with multiple entries for the same scene. They can find a single Item and see all the available data for it at a glance.
 * **Logical Cohesion:** It provides users with a complete, logical package of data for a given observation, which is how most scientific analysis is performed.
 
-:::
-
-:::details Best Practice: Zarr for Data Cubes, COG+STAC for Scene Collections
+## Best Practice: Zarr for Data Cubes, COG+STAC for Scene Collections
 
 When dealing with many COGs/GeoTIFFs you will have a choice of either consolidating them (in a zarr store or a virtual zarr store) or using STAC to describe them as assets.
 
@@ -94,11 +91,9 @@ When dealing with many COGs/GeoTIFFs you will have a choice of either consolidat
 
 **Use COG + STAC if your data is a collection of discrete scenes.** If your files are individual observations with varying footprints or irregular timestamps (like many satellite archives), keep them as separate COG files. Each distinct scene should be described by its own STAC Item, which in turn points to the relevant COG assets.
 
-If your data consists of hundreds of thousands of individual GeoTIFFs that cannot be consolidated into a Zarr store or would otherwise be unwieldy as an individual STAC item per COG, the best practice is to group them logically using a **"one Item per scene"** strategy. Each discrete observation—such as a single satellite scene and all its spectral bands—should be represented by a single STAC Item.
+If your data consists of hundreds of thousands of individual GeoTIFFs that cannot be consolidated into a Zarr store or would otherwise be unwieldy as an individual STAC item per COG, the best practice is to group them logically using a **"one Item per scene"** strategy. Each discrete observation, such as a single satellite scene and all its spectral bands, should be represented by a single STAC Item.
 
-:::
-
-### When to Use COGs+STAC in EarthCODE
+## When to Use COGs+STAC in EarthCODE
 Choosing between a collection of COGs and a consolidated data cube format like Zarr can be challenging, especially when your dataset spans a long time period.
 
 As a general guideline, we recommend the **COG+STAC** approach when the primary focus of your data product is on **individual scenes** and workflows that use a **small number of variables**. This pattern is better when the "scene" is the main unit of interest, such as:
