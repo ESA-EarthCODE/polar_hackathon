@@ -33,7 +33,7 @@
 | 14:00-14:30 | Present dataset first look (each) (30 mins) |
 | 14:30-15:00 | Building Antarctica Datacube Earthcode tools:<br>Visualization (5-10 mins) (Krasen)<br>Example notebooks: adding new datasets to the datacube (transforming data) (10 mins) (Krasen)<br>Making data OPEN (Amy & Artemis) (10-15mins) |
 | 15:00-15:10 | Break |
-| 15:10-15:20 | Motivating science questions (Martin, Amy, Artemis to think of seed questions) |
+| 15:10-15:20 | Motivating science questions |
 | 15:20-16:00 | Individual/group work |
 | 16:00-16:10 | Break |
 | 16:10-16:20 | Demo of DTC Ice Sheets notebooks/dashboard (10 mins) |
@@ -46,7 +46,7 @@
 | 14:00-14:20 | Catch up (30 mins) |
 | 14:20-15:15 | Individual/group work (~1 hr) |
 | 15:15-16:40 | Final presentations (~1.5 hr) |
-| 16:40-17:00 | Feedback:<br>What to do at in-person hackathon |
+| 16:40-17:00 | Feedback: What can we do at the in-person hackathon |
 
 
 
