@@ -91,7 +91,12 @@ project:
               title: Rasterise GeoParquet to Zarr
             - file: 3_File_formats_and_metadata/zarr/2_zarr_metadata.ipynb
               title: Zarr STAC metadata
-    - file: 4_Visualisation/intro.ipynb
+    - title: Visualizations
+      children:
+        - file: 4_Visualisation/1_cog_visualisations.ipynb
+          title: COG visualizations
+        - file: 4_Visualisation/2_geozarr_conversion.ipynb
+          title: GeoZarr conversion
   subject: earth and related environmental sciences
 
 site:
