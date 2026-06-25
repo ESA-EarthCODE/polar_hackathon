@@ -27,3 +27,7 @@ Make sure to select the correct environment size - Dask Gateway and 12gb RAM 4 C
 ![env](../static/jhub-env.png)
 
 See [the introduction to Polar TEP](./Polar-TEP/polar-tep.md) for more details.
+
+After you enter the environment, and open a notebook, you might be asked to select a kernel - select `polar-hackathon-polar-hackathon-pangeo-notebook`
+
+![kernel](../static/kernel.png)

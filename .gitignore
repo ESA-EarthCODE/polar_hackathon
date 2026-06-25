@@ -1,2 +1,14 @@
 downloaded_data/
 notes.txt
+
+# Jupyter-generated files
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+.virtual_documents/
+**/.virtual_documents/
+
+# Python virtual environments
+.venv/
+venv/
+env/
+ENV/
