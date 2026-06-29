@@ -22,6 +22,7 @@ project:
         - file: 0_Introduction/agenda.md
         - file: 0_Introduction/instructors.md
         - file: 0_Introduction/setup.md
+        - file: 0_Introduction/discourse.md
         - file: 0_Introduction/Polar-TEP/polar-tep.md
           children:
             - file: 0_Introduction/Polar-TEP/dask-gateway.ipynb
@@ -61,7 +62,8 @@ project:
           title: Build a single cube
         - file: 2_Datacube/3_large_area_processing.ipynb
           title: Large-area processing
-        - title: Accessing external datasets
+        - file: 2_Datacube/accessing_external_datasets/0_intro.md
+          title: Accessing external datasets
           children:
             - file: 2_Datacube/accessing_external_datasets/1_example_access_sentinel_data.ipynb
               title: Access Sentinel-2 data
@@ -103,6 +105,8 @@ project:
           title: COG visualizations
         - file: 4_Visualisation/2_geozarr_conversion.ipynb
           title: GeoZarr conversion
+    - file: 5_Hackathon_Code/0_intro.md
+      title: 5_Hackathon
   subject: earth and related environmental sciences
 
 site:
