@@ -61,6 +61,12 @@ project:
           title: Build a single cube
         - file: 2_Datacube/3_large_area_processing.ipynb
           title: Large-area processing
+        - title: Accessing external datasets
+          children:
+            - file: 2_Datacube/accessing_external_datasets/1_example_access_sentinel_data.ipynb
+              title: Access Sentinel-2 data
+            - file: 2_Datacube/accessing_external_datasets/2_example_access_era5_data.ipynb
+              title: Access ERA5 data
     - file: 3_File_formats_and_metadata/0_intro.ipynb
       children:
         - file: 3_File_formats_and_metadata/cog/cog.md
