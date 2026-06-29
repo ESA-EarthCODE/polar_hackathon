@@ -20,7 +20,6 @@ project:
     - title: Introduction
       children:
         - file: 0_Introduction/agenda.md
-        - file: 0_Introduction/instructors.md
         - file: 0_Introduction/setup.md
         - file: 0_Introduction/discourse.md
         - file: 0_Introduction/Polar-TEP/polar-tep.md
