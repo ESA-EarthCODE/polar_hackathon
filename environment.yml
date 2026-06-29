@@ -1,0 +1,36 @@
+name: polar-hackathon
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - ipykernel
+  - numpy
+  - pandas
+  - xarray
+  - dask
+  - distributed
+  - dask-gateway
+  - geopandas
+  - rasterio
+  - rioxarray
+  - pyproj
+  - shapely
+  - cartopy
+  - matplotlib
+  - scipy
+  - affine
+  - pyarrow
+  - netcdf4
+  - zarr
+  - fsspec
+  - s3fs
+  - aiohttp
+  - requests
+  - pystac
+  - pystac-client
+  - xstac
+  - odc-stac
+  - hvplot
+  - geoviews
+  - jupyter_bokeh
+  - ipywidgets

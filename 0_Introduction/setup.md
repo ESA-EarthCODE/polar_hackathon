@@ -2,15 +2,26 @@
 
 ## Working Locally
 
-The notebooks assume a Python geospatial environment with common Pangeo tools: `xarray`, `dask`, `geopandas`, `rasterio`, `rioxarray`, `pyproj`, `shapely`, `pandas`, `numpy`, `matplotlib`, `pystac`, `ipykernel`, `zarr`, and `aiohttp`. You can install the pangeo-notebook environment from:
+The notebooks assume a Python geospatial environment with common Pangeo tools. A `environment.yml` is provided in the repository.
 
-`conda create -n pangeo-notebook --file https://raw.githubusercontent.com/pangeo-data/pangeo-docker-images/refs/heads/master/pangeo-notebook/conda-linux-64.lock`
-
-Alternatively, you can create a local Pixi environment from the repository root. If you do not have Pixi installed, see the [Pixi installation guide](https://pixi.sh/latest/installation/).
+Create the environment with Conda or Mamba:
 
 ```bash
-pixi init
-pixi add xarray dask geopandas rasterio rioxarray pyproj shapely pandas numpy matplotlib pystac ipykernel zarr aiohttp
+conda env create -f environment.yml
+conda activate polar-hackathon
+```
+
+Alternatively 
+
+```bash
+mamba env create -f environment.yml
+mamba activate polar-hackathon
+```
+
+Alternatively, you can create a local Pixi environment from the same file. If you do not have Pixi installed, see the [Pixi installation guide](https://pixi.sh/latest/installation/).
+
+```bash
+pixi init --import environment.yml
 ```
 
 Network access is only needed for remote object-store reads or optional source downloads. The format tutorials are written so downloaded examples land in `downloaded_data/` and can be regenerated instead of committed.
