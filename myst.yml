@@ -57,7 +57,9 @@ project:
     - file: 2_Datacube/0_intro.ipynb
       children:
         - file: 2_Datacube/1_remote_cube_access.ipynb
-          title: Remote cube access
+          title: Remote land cube access
+        - file: 2_Datacube/1_remote_sea_cube_access.ipynb
+          title: Remote sea cube access
         - file: 2_Datacube/2_build_single_cube_demo.ipynb
           title: Build a single cube
         - file: 2_Datacube/3_large_area_processing.ipynb
