@@ -1,6 +1,6 @@
-# Polar Hackathon
+# Antarctica Datacube Hackathon
 
-This repository is a guided set of notebooks for discovering Antarctic datasets, converting them into cloud-native formats, combining them into analysis-ready collections, and using those collections in scientific workflows.
+This repository contains the guided notebooks for the Antarctica Datacube Hackathon. They introduce the ESA Antarctica Datacube and show how to discover Antarctic datasets, convert them into cloud-native formats, combine them into analysis-ready collections, and use those collections in scientific workflows.
 
 ## Repository Map
 
@@ -19,7 +19,7 @@ Generated local data is expected in `downloaded_data/`, which is ignored by Git.
 
 
 
-# 1. Datasets prepared for the hackathon.
+# 1. Datasets prepared for the Antarctica Datacube Hackathon
 Each of the datasets has an associated notebook, referenced in the access column that shows how the data can be accessed directly from object storage. More information about the datasets is available in the respective notebooks and the OSC pages. All notebooks reside in the `1_Datasets` folder.
 
 
@@ -41,9 +41,9 @@ Each of the datasets has an associated notebook, referenced in the access column
 | Supraglacial lakes | Surface hydrology features | GeoParquet | Vector geometries | January 2017 maximum extent | CC-BY-4.0 | [OSC](https://opensciencedata.esa.int/products/supraglacial-lakes-west-4dantarctica/collection) | `supraglacial_lakes/access.ipynb` |
 
 
-# 2. Datacube
+# 2. ESA Antarctica Datacube
 
-As part of the initiative, and to facilitate easier analysis of and access to scientific Antarctica data, some of the presented datasets are combined into zarr stores, reprojected to a common 100x100m grid in the EPSG:3031 Polar projection.
+To make Antarctic scientific data easier to access and analyse, the ESA Antarctica Datacube combines some of the presented datasets in Zarr stores, reprojected to a common 100x100m grid in the EPSG:3031 polar projection.
 
 1. You can see how to access the data from the access notebook
 2. You can see how we combined the presented from the .combine notebook. Primarily we used `nearest-neighbour` interpolation. The goal was to provide single access to all the data in one place. You can use that notebook to combine the different raw datasets.

@@ -1,8 +1,8 @@
 # See docs at: https://mystmd.org/guide/frontmatter
 version: 1
 project:
-  title: Polar Hackathon
-  description: Guided notebooks for discovering Antarctic datasets, converting them into cloud-native formats, combining them into analysis-ready collections, and using them in scientific workflows.
+  title: Antarctica Datacube Hackathon
+  description: Guided notebooks for the Antarctica Datacube Hackathon, introducing the ESA Antarctica Datacube and its analysis-ready Antarctic datasets.
   authors:
     - name: European Space Agency
       affiliations:
@@ -108,7 +108,7 @@ project:
         - file: 4_Visualisation/2_geozarr_conversion.ipynb
           title: GeoZarr conversion
     - file: 5_Hackathon_Code/0_intro.md
-      title: 5_Hackathon
+      title: Hackathon Code
   subject: earth and related environmental sciences
 
 site:

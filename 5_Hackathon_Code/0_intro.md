@@ -1,4 +1,4 @@
-# Contributing Code During the Hackathon
+# Contributing Code During the Antarctica Datacube Hackathon
 
 Please add your hackathon work under `5_Hackathon_Code/`.
 

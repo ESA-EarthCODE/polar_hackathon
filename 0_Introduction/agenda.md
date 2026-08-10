@@ -1,4 +1,4 @@
-# Polar Sciences Cluster Online Hackathon 2026 Agenda
+# Antarctica Datacube Hackathon 2026 Agenda
 
 ## Suggested Hackathon Workflow
 
@@ -17,7 +17,7 @@
 | 14:00-14:10 | ESA, EarthCODE and Webex intros (Artemis) |
 | 14:10-14:30 | Introductions |
 | 14:30-14:45 | Objectives for Hackathon (15 mins) (Martin)<br>Setting the scene<br>Goals for the meeting |
-| 14:45-15:00 | Overview Antarctica Datacube (15 mins) (Krasen)<br>Datasets included<br>Examples |
+| 14:45-15:00 | Overview of the ESA Antarctica Datacube (15 mins) (Krasen)<br>Datasets included<br>Examples |
 | 15:00-15:10 | Break |
 | 15:10-15:20 | Introduce shared environment/platform (technical support) (10 mins) (platform provider) |
 | 15:20-16:00 | Play around with datacube (40 mins) |
@@ -31,7 +31,7 @@
 | Time | Activity |
 |---|---|
 | 14:00-14:30 | Present dataset first look (each) (30 mins) |
-| 14:30-15:00 | Building Antarctica Datacube Earthcode tools:<br>Visualization (5-10 mins) (Krasen)<br>Example notebooks: adding new datasets to the datacube (transforming data) (10 mins) (Krasen)<br>Making data OPEN (Amy & Artemis) (10-15mins) |
+| 14:30-15:00 | Building ESA Antarctica Datacube with EarthCODE tools:<br>Visualization (5-10 mins) (Krasen)<br>Example notebooks: adding new datasets to the datacube (transforming data) (10 mins) (Krasen)<br>Making data OPEN (Amy & Artemis) (10-15mins) |
 | 15:00-15:10 | Break |
 | 15:10-15:20 | Motivating science questions |
 | 15:20-16:00 | Individual/group work |
@@ -47,6 +47,5 @@
 | 14:20-15:15 | Individual/group work (~1 hr) |
 | 15:15-16:40 | Final presentations (~1.5 hr) |
 | 16:40-17:00 | Feedback: What can we do at the in-person hackathon |
-
 
 
