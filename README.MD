@@ -2,6 +2,8 @@
 
 This repository contains the guided notebooks for the Antarctica Datacube Hackathon. They introduce the ESA Antarctica Datacube and show how to discover Antarctic datasets, convert them into cloud-native formats, combine them into analysis-ready collections, and use those collections in scientific workflows.
 
+The ESA Antarctica Datacube uses [GeoZarr](https://geozarr.org/) as the standard. The published cubes are Zarr v3 multiscale hierarchies with explicit spatial and projection metadata; the access examples use full-resolution level `0`.
+
 ## Repository Map
 
 | Folder | Purpose | Best starting point |
@@ -43,7 +45,12 @@ Each of the datasets has an associated notebook, referenced in the access column
 
 # 2. ESA Antarctica Datacube
 
-To make Antarctic scientific data easier to access and analyse, the ESA Antarctica Datacube combines some of the presented datasets in Zarr stores, reprojected to a common 100x100m grid in the EPSG:3031 polar projection.
+To make Antarctic scientific data easier to access and analyse, the ESA Antarctica Datacube combines some of the presented datasets in GeoZarr stores. The land-ice data are reprojected to a common 100x100m grid in the EPSG:3031 polar projection, while the sea-ice data use a common 12.5km grid in EPSG:6932.
+
+Published GeoZarr stores:
+
+- [Sea ice cube](https://s3.waw4-1.cloudferro.com/EarthCODE/OSCAssets/antarctica_cube/sea-ice/sea-ice-cube.zarr)
+- Land ice: [combined static layers](https://s3.waw4-1.cloudferro.com/EarthCODE/OSCAssets/antarctica_cube/land-ice/antarctica-combined.zarr), [ice velocity](https://s3.waw4-1.cloudferro.com/EarthCODE/OSCAssets/antarctica_cube/land-ice/ice_velocity.zarr), [surface elevation change](https://s3.waw4-1.cloudferro.com/EarthCODE/OSCAssets/antarctica_cube/land-ice/sec.zarr), [ice temperature](https://s3.waw4-1.cloudferro.com/EarthCODE/OSCAssets/antarctica_cube/land-ice/ice-temp-cube.zarr), and the [composite ice mask](https://s3.waw4-1.cloudferro.com/EarthCODE/OSCAssets/antarctica_cube/land-ice/icemask_composite.zarr)
 
 1. You can see how to access the data from the access notebook
 2. You can see how we combined the presented from the .combine notebook. Primarily we used `nearest-neighbour` interpolation. The goal was to provide single access to all the data in one place. You can use that notebook to combine the different raw datasets.
