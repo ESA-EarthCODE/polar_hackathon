@@ -34,3 +34,5 @@ dependencies:
   - geoviews
   - jupyter_bokeh
   - ipywidgets
+  - certifi=2026.10.19
+  - ca-certificates=2026.10.19
