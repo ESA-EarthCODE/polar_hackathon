@@ -112,7 +112,7 @@ project:
   subject: earth and related environmental sciences
 
 site:
-  template: book-theme
+  template: https://github.com/jupyter-book/myst-theme/releases/download/myst-to-react%401.4.1/book-theme.zip
   options:
     logo: static/EarthCODE_kv_transparent.png
   actions:
