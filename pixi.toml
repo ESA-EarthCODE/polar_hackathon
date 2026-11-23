@@ -1,0 +1,51 @@
+[workspace]
+name = "earthcode_cubes"
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-arm64"]
+exclude-newer = "20 days"
+
+[exclude-newer]
+certifi = "0d"
+ca-certificates = "0d"
+
+[dependencies]
+python = "3.13.*"
+ipykernel = ">=6,<8"
+jupyterlab = ">=4.6.1,<5"
+jupytext = ">=1,<2"
+numpy = ">=1.26,<3"
+pandas = ">=2,<4"
+xarray = ">=2025,<2027"
+dask = ">=2025,<2027"
+distributed = ">=2025,<2027"
+dask-gateway = ">=2025,<2027"
+geopandas = ">=1,<2"
+rasterio = ">=1.4,<2"
+rio-cogeo = ">=7,<8"
+rioxarray = ">=0.19,<1"
+pyproj = ">=3,<4"
+shapely = ">=2,<3"
+matplotlib-base = ">=3,<4"
+cartopy = ">=0.25,<1"
+scipy = ">=1,<2"
+pyarrow = ">=18,<24"
+netcdf4 = ">=1,<2"
+zarr = ">=3,<4"
+fsspec = ">=2025,<2027"
+s3fs = ">=2025,<2027"
+pystac = ">=1,<2"
+ipywidgets = ">=8,<9"
+pytest = ">=8,<10"
+hvplot = ">=0.12.2,<0.13"
+geoviews = ">=1.15.1,<2"
+graphviz = ">=14.1.2,<15"
+python-graphviz = ">=0.21,<1"
+h5netcdf = ">=1.8.1,<2"
+requests = ">=2,<3"
+pystac-client = ">=0.9.1,<0.10"
+stackstac = ">=0.5.0,<0.6"
+libgdal-jp2openjpeg = ">=3.12.3,<4"
+
+[pypi-dependencies]
+geozarr-toolkit = ">=0.1.2,<0.2"
+xstac = ">=1.2,<2"

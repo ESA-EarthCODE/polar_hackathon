@@ -12,5 +12,7 @@ notes.txt
 venv/
 env/
 ENV/
+.pixi/
 
 4_multi_resolution.ipynb
+
