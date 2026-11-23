@@ -54,6 +54,10 @@ project:
           title: Subglacial lakes
         - file: 1_Datasets/supraglacial_lakes/access.ipynb
           title: Supraglacial lakes
+        - file: 1_Datasets/5dais/access.ipynb
+          title: 5DAIS supraglacial hydrology
+        - file: 1_Datasets/so-simba/access.ipynb
+          title: SO-SIMBA Sea Ice
     - file: 2_Datacube/0_intro.ipynb
       children:
         - file: 2_Datacube/1_remote_cube_access.ipynb

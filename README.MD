@@ -41,7 +41,8 @@ Each of the datasets has an associated notebook, referenced in the access column
 | SOFRESH sea surface salinity | Southern Ocean salinity | Zarr | EASE-style Southern Ocean grid | 2011-2022, 9-day maps | CC-BY-4.0 | [OSC](https://opensciencedata.esa.int/products/sofresh-sea-surface-salinity/collection) | `sofresh/access.ipynb` |
 | Subglacial lakes | Active lake boundaries | GeoParquet | Vector geometries, examples reproject to EPSG:3031 | 2010-2020 source analysis | CC-BY-4.0 | [OSC](https://opensciencedata.esa.int/products/subglacial-lakes-boundries/collection) | `subglacial_lakes/access.ipynb` |
 | Supraglacial lakes | Surface hydrology features | GeoParquet | Vector geometries | January 2017 maximum extent | CC-BY-4.0 | [OSC](https://opensciencedata.esa.int/products/supraglacial-lakes-west-4dantarctica/collection) | `supraglacial_lakes/access.ipynb` |
-
+| 5DAIS | Surface hydrology features and slush | GeoParquet | Vector geometries | January 2017-2024 | CC-BY-4.0 | [OSC](https://opensciencedata.esa.int/products/5dais/collection) | `5dais/access.ipynb` |
+| SO-SIMBA | Sea Ice refence dataset | Zarr | 25 km EASE2, Southern Hemisphere (EPSG:6932) | January 2002-2022 | CC-BY-4.0 | [OSC](https://opensciencedata.esa.int/projects/so-simba/collection) | `so-simba/access.ipynb` |
 
 # 2. ESA Antarctica Datacube
 
