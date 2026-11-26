@@ -41,8 +41,8 @@ Each of the datasets has an associated notebook, referenced in the access column
 | SOFRESH sea surface salinity | Southern Ocean salinity | Zarr | EASE-style Southern Ocean grid | 2011-2022, 9-day maps | CC-BY-4.0 | [OSC](https://opensciencedata.esa.int/products/sofresh-sea-surface-salinity/collection) | `sofresh/access.ipynb` |
 | Subglacial lakes | Active lake boundaries | GeoParquet | Vector geometries, examples reproject to EPSG:3031 | 2010-2020 source analysis | CC-BY-4.0 | [OSC](https://opensciencedata.esa.int/products/subglacial-lakes-boundries/collection) | `subglacial_lakes/access.ipynb` |
 | Supraglacial lakes | Surface hydrology features | GeoParquet | Vector geometries | January 2017 maximum extent | CC-BY-4.0 | [OSC](https://opensciencedata.esa.int/products/supraglacial-lakes-west-4dantarctica/collection) | `supraglacial_lakes/access.ipynb` |
-| 5DAIS | Surface hydrology features and slush | GeoParquet | Vector geometries | January 2017-2024 | CC-BY-4.0 | [OSC](https://opensciencedata.esa.int/products/5dais/collection) | `5dais/access.ipynb` |
-| SO-SIMBA | Sea Ice refence dataset | Zarr | 25 km EASE2, Southern Hemisphere (EPSG:6932) | January 2002-2022 | CC-BY-4.0 | [OSC](https://opensciencedata.esa.int/projects/so-simba/collection) | `so-simba/access.ipynb` |
+| 5DAIS | Supraglacial open meltwater and slush | GeoParquet | EPSG:4326 polygons | Monthly during the Antarctic melt season | CC-BY-4.0 | [OSC](https://opensciencedata.esa.int/products/5dais/collection) | [Notebook](1_Datasets/5dais/access.ipynb) |
+| SO-SIMBA | Sea-ice thickness, snow depth and their uncertainties | Zarr | EPSG:6932, 25 km for CDR thickness and MMS snow depth, 12.5 km for MMS thickness | Daily, Jun 2002–Aug 2025 (CDR), Oct 2018–Aug 2025 (MMS) | CC-BY-4.0 | [OSC](https://opensciencedata.esa.int/projects/so-simba/collection) | [Notebook](1_Datasets/so-simba/access.ipynb) |
 
 # 2. ESA Antarctica Datacube
 
@@ -50,8 +50,8 @@ To make Antarctic scientific data easier to access and analyse, the ESA Antarcti
 
 Published GeoZarr stores:
 
-- [Sea ice cube](https://s3.waw4-1.cloudferro.com/EarthCODE/OSCAssets/antarctica_cube/sea-ice/sea-ice-cube.zarr)
-- Land ice: [combined static layers](https://s3.waw4-1.cloudferro.com/EarthCODE/OSCAssets/antarctica_cube/land-ice/antarctica-combined.zarr), [ice velocity](https://s3.waw4-1.cloudferro.com/EarthCODE/OSCAssets/antarctica_cube/land-ice/ice_velocity.zarr), [surface elevation change](https://s3.waw4-1.cloudferro.com/EarthCODE/OSCAssets/antarctica_cube/land-ice/sec.zarr), [ice temperature](https://s3.waw4-1.cloudferro.com/EarthCODE/OSCAssets/antarctica_cube/land-ice/ice-temp-cube.zarr), and the [composite ice mask](https://s3.waw4-1.cloudferro.com/EarthCODE/OSCAssets/antarctica_cube/land-ice/icemask_composite.zarr)
+- [Sea ice cube](https://s3.waw4-1.cloudferro.com/EarthCODE/OSCAssets/antarctica_cube/sea-ice/sea-ice-cube.zarr) includes monthly SO-SIMBA sea-ice thickness, snow depth, and their uncertainties.
+- Land ice: [combined static layers](https://s3.waw4-1.cloudferro.com/EarthCODE/OSCAssets/antarctica_cube/land-ice/antarctica-combined.zarr), [ice velocity](https://s3.waw4-1.cloudferro.com/EarthCODE/OSCAssets/antarctica_cube/land-ice/ice_velocity.zarr), [surface elevation change](https://s3.waw4-1.cloudferro.com/EarthCODE/OSCAssets/antarctica_cube/land-ice/sec.zarr), [ice temperature](https://s3.waw4-1.cloudferro.com/EarthCODE/OSCAssets/antarctica_cube/land-ice/ice-temp-cube.zarr), the [composite ice mask](https://s3.waw4-1.cloudferro.com/EarthCODE/OSCAssets/antarctica_cube/land-ice/icemask_composite.zarr), and [supraglacial hydrology](https://s3.waw4-1.cloudferro.com/EarthCODE/OSCAssets/antarctica_cube/land-ice/antarctic-hydrology.zarr).
 
 1. You can see how to access the data from the access notebook
 2. You can see how we combined the presented from the .combine notebook. Primarily we used `nearest-neighbour` interpolation. The goal was to provide single access to all the data in one place. You can use that notebook to combine the different raw datasets.
